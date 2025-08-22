@@ -16,6 +16,7 @@ The first program in C.
 int main(void) {
     printf("Hello,\nWorld!\n\n");  // \n (new line) - escape sequence
     printf("I\nam\nready\nto\ncode!\n\n");
+    printf("A\tb\tc\n");
 
     // printf("What is your name?: ");
     // char name[64];
