@@ -2,3 +2,7 @@
 2. cd <directory name> (change directory) - changes the currentd irectory.
 3. code <file_name> - opens the file in the text editor.
 4. mkdir <directory_name> (make directory) - creates a folder.
+5. pwd (print working directory) - Shows the path of the current directory.
+6. clear - clears the terminal window
+7. gcc <file_name (c source code)> - compiles the program.
+8. ./<executable_file> - runs the program.
