@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 
-int main() {
+int main(void) {
     // Create a variables
     int first_number;
     // Assign a value to a variable
