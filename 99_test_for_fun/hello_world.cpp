@@ -1,8 +1,10 @@
 #include <iostream>
 #include <string>
+#include "MyTools.h"
 
 using namespace std;
 
+/*
 bool isNumber(string input) {
 	// Loop through each string's characters to determine if the string is a number
 	for (int i = 0; i < input.length(); i++) {
@@ -12,6 +14,7 @@ bool isNumber(string input) {
 	}
 	return true;
 }
+*/
 
 int main() {
 	// Greeting message
@@ -39,6 +42,8 @@ int main() {
 	
 	// Prints what the user really entered as input
 	cout << "You entered: '" << input << "'." << endl;
+
+	printSquare(age);
 
 	return 0;
 }

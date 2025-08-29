@@ -10,11 +10,11 @@ int main(void) {
     
     // Get the input
     // Print the prompt
-    puts("Enter the side of a square:");
+    puts("Enter the side of a square:");  // Text only, puts a newline automatically afterwards
 
     // Get the input
     // & = address operator
-    scanf("%d", &square_side);
+    scanf("%d", &square_side);  // scanf("%[format specifier]", &[variable with reference operator])
 
     // printf("You want %d sides? Okay we will do that\n", square_side);
 
