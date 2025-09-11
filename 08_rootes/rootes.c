@@ -10,6 +10,9 @@
         4. Print rootes
 */
 
+// NOTE: to compile this program, you must use the -lm flag ([library] [math library])
+// So: gcc rootes.c -lm -o rootes.exe
+
 #include <stdio.h>
 #include <math.h>  // sqrt - function
 
@@ -21,6 +24,13 @@ void printRootes(int a, int b, int c);
 
 int main(void) {
     printPrompt('a');
+    int a = getCoefficient();
+    printPrompt('b');
+    int b = getCoefficient();
+    printPrompt('c');
+    int c = getCoefficient();
+    calculateDiscriminant(a, b, c);
+    printRootes(a, b, c);
 
     return 0;
 }
