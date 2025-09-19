@@ -58,3 +58,18 @@ void printNRandom(int n) {
 int returnRandomInclusive(int min, int max) {
     return rand() % (max - min + 1) + min;
 }
+
+
+/*
+
+// x <<= y -> x * 2^y
+
+x = 3 = 0b00000011
+y = 4 = 0b00000100
+
+3 <<= 4 -> 3 * 2^4 -> 3 * 16 -> 48
+
+0b00000011 << 0b00000100 = 0b00110000
+0b00110000 = 32 + 16 = 48!!!!!!!!!!!! thats so cool
+
+*/
