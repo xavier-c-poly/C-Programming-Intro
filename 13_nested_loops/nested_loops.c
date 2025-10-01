@@ -3,6 +3,7 @@
 
 void printTriangleTopLeft(int n);
 void printTriangleBottomLeft(int n);
+void printTriangleTopLeftNumbers(int n);
 
 int main(void) {
     int n = 0;
@@ -12,6 +13,10 @@ int main(void) {
         printf("Enter a positive integer: ");
         scanf("%d", &n);
     } while (n <= 0);
+
+    int temp;
+    printTriangleTopLeftNumbers(n);
+    scanf("%d", &temp);
 
     // Call a function
     int i = 1;
@@ -61,5 +66,18 @@ void printTriangleBottomLeft(int n) {
         }
         puts("");
         usleep(6000);
+    }
+}
+
+void printTriangleTopLeftNumbers(int n) {
+    int num = 1;
+    for (int i = n; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            printf("%d", num);
+            if (j + 1 < i) printf(" ");
+            num++;
+        }
+        puts("");
+        num -= i - 1;
     }
 }
