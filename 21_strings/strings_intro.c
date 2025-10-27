@@ -9,7 +9,7 @@ bool isLower(char c);
 
 // TODO
 bool isAlpha(char c); // True if the character is a letter (upper or lower)
-bool isDigitr(char c);  // True if c is a digit [0; 9]
+bool isDigit(char c);  // True if c is a digit [0; 9]
 bool isAlNum(char c);  // True if the character is a letter or a digit
 
 int main(void) {
