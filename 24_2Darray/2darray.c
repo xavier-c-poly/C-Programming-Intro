@@ -97,3 +97,14 @@ void setCol(int rows, int cols, int arr[rows][cols], int col_number, int value) 
         arr[i][col_number] = value;
     }
 }
+
+void setMainDiagonal(int rows, int cols, int arr[rows][cols], int value) {  // negative linear centered at center of array
+    for (int i = 0; i < rows && i < cols; i++) {
+        arr[i][i] = value;
+    }
+}
+void setInverseDiagonal(int rows, int cols, int arr[rows][cols], int value) {
+    for (int i = 0; i < rows && i < cols; i++) {
+        arr[i][i] = value;
+    }
+}
