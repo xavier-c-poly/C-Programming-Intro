@@ -4,6 +4,7 @@
 #define NAME_SIZE 30
 #define STREET_NAME 30
 #define CITY_NAME 30
+#define STATE_NAME 30
 
 // TODO
 // Add last name
@@ -13,6 +14,7 @@
 typedef struct {
     char street[STREET_NAME];
     char city[CITY_NAME];
+    char state[STATE_NAME];
     int zip;
 } Address;
 
@@ -20,6 +22,7 @@ typedef struct {
 struct student {
     // Data members
     char first_name[NAME_SIZE];
+    char last_name[NAME_SIZE];
     int age;
     Address home_address;
 };
@@ -117,8 +120,10 @@ void printStudent(struct student *st) {
 
 Student createStudent(void) {
     Student st;
-    printf("Enter student's name: ");
+    printf("Enter student's first name: ");
     scanf("%s", st.first_name);  // Don't need address opoerator since string is already a pointer
+    printf("Enter student's last name: ");
+    scanf("%s", st.last_name);  // Don't need address opoerator since string is already a pointer
     printf("Enter student's age: ");
     scanf("%d", &st.age);
     st.home_address = createAddress();
@@ -126,11 +131,15 @@ Student createStudent(void) {
 }
 
 void printAddress(Address *adr) {
+    /*
     puts("-------------------------------");
     printf("Street:\t\t%s\n", adr->street);
     printf("City:\t\t%s\n", adr->city);
     printf("Zip code:\t%d\n", adr->zip);
     puts("-------------------------------");
+    */
+
+    printf("%s %s, %d\n", adr->street, adr->city, adr->zip);
 }
 
 Address createAddress(void) {
@@ -140,6 +149,8 @@ Address createAddress(void) {
     scanf("%s", adr.street);  // won't work because its defined as *street not street[NAME_SIZE]
     printf("Enter city of address: ");
     scanf("%s", adr.city);
+    printf("Enter state: ");
+    scanf("%s", adr.state);  // won't work because its defined as *street not street[NAME_SIZE]
     printf("Enter address zip code: ");
     scanf("%d", &adr.zip);
 
