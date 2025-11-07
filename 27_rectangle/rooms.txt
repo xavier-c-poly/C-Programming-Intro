@@ -1,2 +1,7 @@
-=== ROOM ===
-Floor: 12.00 x 12.00 Perimeter: 48.00 Area: 144.00
+=== ROOM [Living Room] ===
+Floor: 12.12 x 12.21  Perimeter = 48.66  Area = 147.99
+Walls (4):
+  Wall 1: 13.84 x 13.18  Perimeter = 182.41  Area = 182.41
+  Wall 2: 16.16 x 14.14  Perimeter = 228.50  Area = 228.50
+  Wall 3: 13.98 x 12.67  Perimeter = 177.13  Area = 177.13
+  Wall 4: 14.41 x 11.39  Perimeter = 164.13  Area = 164.13

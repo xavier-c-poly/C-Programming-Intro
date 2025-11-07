@@ -11,10 +11,23 @@ int main(void) {
     }
 
     // Read from a file
+    // WRONG WAY
+    // This doesn't work becasue feof doesn't become false until it tries to read the file in the while loop and fails,
+    // so it doesn't get updated until after the loop runs for an additional extra time
+    /*
     int i;
     while(!feof(my_file)) {
         fscanf(my_file, "%d", &i);
         printf("%4d", i);
+        if (i % 10 == 0) printf("\n");
+    }
+    */
+    // RIGHT WAY
+    int i;
+    while (fscanf(my_file, "%d", &i) == 1) {
+        printf("%4d", i);
+        if (i % 10 == 0)
+            printf("\n");
     }
 
     // Closing the file
