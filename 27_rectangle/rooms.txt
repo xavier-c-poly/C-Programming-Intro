@@ -1,0 +1,2 @@
+=== ROOM ===
+Floor: 12.00 x 12.00 Perimeter: 48.00 Area: 144.00

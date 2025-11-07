@@ -19,8 +19,8 @@ typedef struct {
 // --------------- FUNCTION PROTOTYPES ---------------
 Rectangle   Rectangle_create(double width, double height);
 Rectangle   Rectangle_createPromopt(void);
-double      Rectangle_perimeter(Rectangle* rect);
-double      Rectangle_area(Rectangle* rect);
+double      Rectangle_getPerimeter(Rectangle* rect);
+double      Rectangle_getArea(Rectangle* rect);
 void        Rectangle_print(Rectangle* rect);
 Room        Room_create(double width_floor, double height_floor);
 void        Room_addWall(Room* room, double width_wall, double height_wall);
@@ -30,6 +30,7 @@ double      Room_getWallsPerimeter(Room *room);  // Total perimeter of all the w
 double      Room_getFloorArea(Room *room);
 double      Room_getWallsArea(Room *room);
 void        Room_print(Room* room);
+void Room_printToFile(Room *r, char *file_name);
 // ---------------------------------------------------
 
 int main(void) {
@@ -42,8 +43,8 @@ int main(void) {
 
     puts("");
 
-    printf("Perimeter of rect2:\t%.2lf\n", Rectangle_perimeter(&rect2));
-    printf("Area of rect2:\t\t%.2lf\n", Rectangle_area(&rect2));
+    printf("Perimeter of rect2:\t%.2lf\n", Rectangle_getPerimeter(&rect2));
+    printf("Area of rect2:\t\t%.2lf\n", Rectangle_getArea(&rect2));
 
     puts("");
 
@@ -54,7 +55,7 @@ int main(void) {
     arr[2] = Rectangle_create(447.2, 184.3);
 
     for (int i = 0; i < 3; i++) {
-        printf("Rectangle %d: Perimeter %.2lf, Area %.2lf\n", i + 1, Rectangle_perimeter(&arr[i]), Rectangle_area(&arr[i]));
+        printf("Rectangle %d: Perimeter %.2lf, Area %.2lf\n", i + 1, Rectangle_getPerimeter(&arr[i]), Rectangle_getArea(&arr[i]));
     }
 
 
@@ -64,6 +65,13 @@ int main(void) {
     Room_addWall(&living_room, 16, 14);
     Room_addWall(&living_room, 13, 12);
     Room_addWall(&living_room, 14, 11);
+
+    Room_printToFile(&living_room, "rooms.txt");
+
+    puts("");
+
+    // Print the room
+    Room_print(&living_room);
 
     return 0;
 }
@@ -86,19 +94,19 @@ Rectangle Rectangle_createPromopt(void) {
     return r;
 }
 
-double Rectangle_perimeter(Rectangle* rect) {
+double Rectangle_getPerimeter(Rectangle* rect) {
     return (rect->width * 2) + (rect->height * 2);
 }
 
-double Rectangle_area(Rectangle* rect) {
+double Rectangle_getArea(Rectangle* rect) {
     return rect->width * rect->height;
 }
 
 void Rectangle_print(Rectangle* rect) {
     printf("Rectangle width:\t%.2lf\n", rect->width);
     printf("Rectangle height:\t%.2lf\n", rect->height);
-    printf("Perimeter:\t\t%.2lf\n", Rectangle_perimeter(rect));
-    printf("Area:\t\t\t%.2lf\n", Rectangle_area(rect));
+    printf("Perimeter:\t\t%.2lf\n", Rectangle_getPerimeter(rect));
+    printf("Area:\t\t\t%.2lf\n", Rectangle_getArea(rect));
 }
 
 Room Room_create(double width_floor, double height_floor) {
@@ -121,39 +129,59 @@ void Room_addWall(Room* room, double width_wall, double height_wall) {
 }
 
 double Room_getFloorPerimeter(Room *room) {
-    return Rectangle_perimeter(&room->floor);
+    return Rectangle_getPerimeter(&room->floor);
 }
 
 double Room_getWallsPerimeter(Room *room) {
     double perimeter = 0;
 
     for (int i = 0; i < room->count_walls; i++) {
-        perimeter += Rectangle_perimeter(&room->walls[i]);
+        perimeter += Rectangle_getPerimeter(&room->walls[i]);
     }
 
     return perimeter;
 }
 
 double Room_getFloorArea(Room *room) {
-    return Rectangle_area(&room->floor);
+    return Rectangle_getArea(&room->floor);
 }
 
 double Room_getWallsArea(Room *room) {
     double area = 0;
 
     for (int i = 0; i < room->count_walls; i++) {
-        area += Rectangle_area(&room->walls[i]);
+        area += Rectangle_getArea(&room->walls[i]);
     }
 
     return area;
 }
 
 void Room_print(Room* room) {
+    /*
     printf("Room with floor size %.2lf width by %.2lf length.\n", room->floor.width, room->floor.height);
 
+    printf("Rooms (%d):\n", room->count_walls);
+
     for (int i = 0; i < room->count_walls; i++) {
-        printf("Wall %d: ", i + 1);
+        printf("\tWall %d: ", i + 1);
         Rectangle_print(&room->walls[i]);
         puts("");
     }
+    */
+
+}
+
+void Room_printToFile(Room *r, char *file_name) {
+    FILE *file = fopen(file_name, "w");
+    if (file == NULL) {
+        return;
+    }
+    fprintf(file, "=== ROOM ===\n");
+    fprintf(file, "Floor: %.2lf x %.2lf Perimeter: %.2lf Area: %.2lf\n", r->floor.width, r->floor.height, Room_getFloorPerimeter(r), Room_getFloorArea(r));
+
+
+    // TODO
+    // Fix file_write.c and file_read.c to not print the double 100
+    // ADD INFO about walls (aka finish this functions)
+    // REPLACE Room_print WITH THIS PRINT FORMAT
 }
