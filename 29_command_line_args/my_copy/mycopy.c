@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include <ctype.h>
 #include <curses.h>
 
 // char *argv[] -> 2D array. It's first a char* argv, making it a string. then, in the order of operations, we make it an array []. so its more like
 // (char* argv)[] kindof? like char (*argv)[]. its an array of char* argv's, meaning its an array of strings!
+
+enum options {
+    OVERWRITE = 'o', APPEND = 'a', CANCEL = 'c'
+};
+
 
 int main(int argc, char *argv[]) {
     if (argc != 3) {
@@ -33,12 +39,21 @@ int main(int argc, char *argv[]) {
         initscr();  // Start curses mode
         cbreak();  // Disable line buffering
         noecho();  // Don't echo input characters to the screen
-        printw("Are you sure you want to overwrite %s? (Y/N): ", argv[2]);
+        printw("Warning: %s already exists. Do you want to overwrite, append, or cancel? (O/A/C): ", argv[2]);
         refresh();  // Update the screen
         user_response = getch();  // Read a character immediately
         endwin();  // End curses mode (restores the terminal to normal state)
 
-        if (user_response != 'y' && user_response != 'Y') {
+        if (tolower(user_response) == OVERWRITE) {
+            // make sure that it overwrites
+        }
+        else if (tolower(user_response) == APPEND) {
+            // make sure that it appends
+        }
+        else if (tolower(user_response) == CANCEL) {
+            // make sure that it appends
+        }
+        else {
             puts("Exiting");
             return 0;
         }
